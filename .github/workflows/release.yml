@@ -1,0 +1,18 @@
+# Publishes to PyPI when a version tag (v*) is pushed. Requires PyPI "trusted publishing" to be configured for
+# this repository (https://docs.pypi.org/trusted-publishers/); no API token is stored in the repository.
+name: Release
+on:
+  push:
+    tags: ["v*"]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install build && python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1

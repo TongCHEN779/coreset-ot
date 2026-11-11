@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coreset-ot"
+version = "0.1.0"
+description = "Training-free coreset (dataset subset) selection by optimal transport: k-median, kernel herding and a hybrid in random-network feature space."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Tong Chen" }]
+keywords = ["coreset", "data selection", "dataset condensation", "herding", "k-median", "optimal transport", "random features"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["numpy>=1.21", "torch>=2.0"]
+
+[project.optional-dependencies]
+datasets = ["torchvision>=0.15", "pillow>=9"]
+dev = ["pytest>=7", "scipy>=1.9", "build", "twine", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/TongCHEN779/coreset-ot"
+Repository = "https://github.com/TongCHEN779/coreset-ot"
+Issues = "https://github.com/TongCHEN779/coreset-ot/issues"
+
+[project.scripts]
+coreset-ot = "coreset_ot.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coreset_ot"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "docs", "examples", "README.md", "LICENSE", "CHANGELOG.md", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+markers = ["slow: end-to-end tests that train networks (deselect with -m 'not slow')"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E741", "E501", "E731"]  # long lines are a style choice; lambdas in tests are fine

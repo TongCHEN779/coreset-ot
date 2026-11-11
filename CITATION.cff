@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "coreset-ot: training-free coreset selection by optimal transport"
+version: 0.1.0
+type: software
+authors:
+  - family-names: "Chen"
+    given-names: "Tong"
+license: MIT
+repository-code: "https://github.com/TongCHEN779/coreset-ot"
