@@ -17,4 +17,8 @@ list of arrays that are averaged as feature blocks).
 **Results differ slightly from the documented numbers.** Those ran on Apple MPS; random networks and PAM tie-breaking can
 differ across hardware. See [reproducing](reproducing.md).
 
-**Is the selection deterministic?** Given the same seed and device, yes.
+**Is the selection deterministic?** Given the same seed on the same hardware and software, yes. Across platforms (for
+example macOS versus Linux) the last bits of float32 distances can differ. That can change the randomised seeding of
+`kmedoids` (it samples starting points with probabilities computed from distances) and lead to a different but equally
+good selection. In our cross-platform tests the golden outputs of `kcenter` and `herding` matched exactly on macOS and
+Linux; `kmedoids` did not, so its test compares the cost of the solution rather than the indices.
