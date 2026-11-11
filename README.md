@@ -1,5 +1,9 @@
 # coreset-ot
 
+[![CI](https://github.com/TongCHEN779/coreset-ot/actions/workflows/ci.yml/badge.svg)](https://github.com/TongCHEN779/coreset-ot/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](pyproject.toml)
+
 **Training-free coreset selection for image classification:** pick a small, class-balanced subset of real training
 images without training anything.
 
